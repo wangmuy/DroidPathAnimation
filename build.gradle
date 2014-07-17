@@ -1,3 +1,50 @@
+import java.text.SimpleDateFormat
+import java.util.regex.Pattern
+
+def getSvnRevision() {
+    new ByteArrayOutputStream().withStream { os ->
+        def result = exec {
+            executable = 'svn'
+            args = ['info']
+            standardOutput = os
+        }
+        def outputAsString = os.toString()
+        def matchLastChangedRev = outputAsString =~ /Last Changed Rev: (\d+)/
+
+        ext.svnRev = "${matchLastChangedRev[0][1]}".toInteger()
+    }
+    return svnRev
+}
+
+def getVersionCodeFromManifest() {
+    def manifestFile = file("AndroidManifest.xml")
+    def pattern = Pattern.compile("versionCode=\"(\\d+)\"")
+    def manifestText = manifestFile.getText()
+    def matcher = pattern.matcher(manifestText)
+    matcher.find()
+    def version = Integer.parseInt(matcher.group(1))
+    return version
+}
+
+def getUpdatedRevision() {
+    def revision = 1;
+    try {
+        revision = getSvnRevision()
+    } catch (Exception e) {
+        println("Not a SVN repo")
+        revision = getVersionCodeFromManifest()
+    }
+    println("Updated versionCode = " + revision)
+    return revision
+}
+
+def getBuildTime() {
+    def df = new SimpleDateFormat("yyyyMMddHHmm")
+    // df.setTimeZone(TimeZone.getTimeZone("UTC"))
+    return df.format(new Date())
+    // to long: Long.valueOf(getBuildTime().toString())
+}
+
 buildscript {
     repositories {
         //flatDir { dirs "gradle" }
@@ -20,6 +67,10 @@ dependencies {
 android {
     compileSdkVersion 19
     buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        versionCode = getUpdatedRevision()
+    }
 
     //compileOptions {
     //    sourceCompatibility JavaVersion.VERSION_1_7

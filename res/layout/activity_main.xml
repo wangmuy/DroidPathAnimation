@@ -1,0 +1,70 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+    
+    <FrameLayout android:id="@+id/drawArea"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="horizontal">
+        <EditText android:id="@+id/startX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="start x"
+            android:singleLine="true"
+            android:inputType="numberDecimal"/>
+        <EditText android:id="@+id/startY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="start y"
+            android:singleLine="true"
+            android:inputType="numberDecimal"/>
+        <EditText android:id="@+id/endX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="end x"
+            android:singleLine="true"
+            android:inputType="numberDecimal"/>
+        <EditText android:id="@+id/endY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="end y"
+            android:singleLine="true"
+            android:inputType="numberDecimal"/>
+        <EditText android:id="@+id/c0x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="c0 x"
+            android:singleLine="true"
+            android:inputType="numberDecimal"/>
+        <EditText android:id="@+id/c0y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="c0 y"
+            android:singleLine="true"
+            android:inputType="numberDecimal"/>
+        <EditText android:id="@+id/c1x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="c1 x"
+            android:singleLine="true"
+            android:inputType="numberDecimal"/>
+        <EditText android:id="@+id/c1y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="c1 y"
+            android:singleLine="true"
+            android:inputType="numberDecimal"/>
+	    <Button android:id="@+id/applyBtn"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Apply" />
+    </LinearLayout>
+
+</FrameLayout>

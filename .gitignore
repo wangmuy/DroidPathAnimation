@@ -1,0 +1,16 @@
+# Gradle
+.gradle
+local.properties
+build
+
+# Android / Eclipse
+gen
+bin
+
+# IntelliJ / Android Studio
+# legacy style: https://intellij-support.jetbrains.com/entries/23393067
+.idea
+*.iws
+
+# mac
+.DS_Store
